@@ -29,29 +29,42 @@ public class CharacterMovmentScript : MonoBehaviour
         velocity *= Time.deltaTime;
 
         rb.velocity = velocity;
+
+        Vector2 adjustedPosition = HandleOutOfBounds();
+
+        rb.position = adjustedPosition;
     }
 
-    private void HandleOutOfBounds()
+    private Vector2 HandleOutOfBounds()
     {
+        Vector2 outOfBounds = Vector2.zero;
+
         if (rb.position.y > boundingBox.bounds.center.y + boundingBox.bounds.extents.y)
         {
             // Out of top
-            rb.position = new Vector2(rb.position.x, boundingBox.bounds.center.y - boundingBox.bounds.extents.y);
+            outOfBounds.y = -1;
         }
         if (rb.position.y < boundingBox.bounds.center.y - boundingBox.bounds.extents.y)
         {
             // Out of bottom
-            rb.position = new Vector2(rb.position.x, boundingBox.bounds.center.y + boundingBox.bounds.extents.y);
+            outOfBounds.y = 1;
         }
         if (rb.position.x > boundingBox.bounds.center.x + boundingBox.bounds.extents.x)
         {
             // Out of right
-            rb.position = new Vector2(boundingBox.bounds.center.x - boundingBox.bounds.extents.x, rb.position.y);
+            outOfBounds.x = -1;
         }
         if (rb.position.x < boundingBox.bounds.center.x - boundingBox.bounds.extents.x)
         {
             // Out of left
-            rb.position = new Vector2(boundingBox.bounds.center.x + boundingBox.bounds.extents.x, rb.position.y);
+            outOfBounds.x = 1;
         }
+
+        print(outOfBounds);
+
+        return new Vector2(
+            rb.position.x + (outOfBounds.x * boundingBox.bounds.size.x),
+            rb.position.y + (outOfBounds.y * boundingBox.bounds.size.y)
+        );
     }
 }
