@@ -99,4 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _verticalBorder: 6.2
   _horizontalBorder: 4.5
-  _speed: 1.8
+  _speed: 5
