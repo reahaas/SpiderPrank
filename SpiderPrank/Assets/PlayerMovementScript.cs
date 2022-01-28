@@ -8,6 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private float _verticalBorder = 4.5f;
     [SerializeField] private float _horizontalBorder = 4.5f;
     [SerializeField] private int hp = 3;
+    [SerializeField] private GameObject camera;
     private bool _invincible = false;
     private bool _protected = false;
 
@@ -68,8 +69,7 @@ public class PlayerMovementScript : MonoBehaviour
     
     private void fire()
     {   
-        Vector3 spawnAt = transform.position + Vector3.up;
-        Instantiate(regularWaterdropPrefab, spawnAt, Quaternion.identity);
+	    Instantiate(regularWaterdropPrefab, transform.position, transform.rotation);
     }
     
     void OnTriggerEnter2D(Collider2D col)
@@ -124,6 +124,14 @@ public class PlayerMovementScript : MonoBehaviour
 		}
     }
 
-
+    public void turnRight()
+    {
+	    transform.eulerAngles = new Vector3(0,0,transform.eulerAngles.z - 90);
+    }
  
+    public void turnLeft()
+    {
+	    transform.eulerAngles = new Vector3(0,0,transform.eulerAngles.z + 90);
+	    camera.transform.eulerAngles = new Vector3(0,0,transform.eulerAngles.z + 90);
+    }
 }

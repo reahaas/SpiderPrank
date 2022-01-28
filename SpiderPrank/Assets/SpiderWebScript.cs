@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpiderWebScript : MonoBehaviour
 {
     
-    [SerializeField] private float _verticalBorder = 6.2f;
-    [SerializeField] private float _horizontalBorder = 4.5f;
+    [SerializeField] private float _verticalBorder = 6.25f;
+    [SerializeField] private float _horizontalBorder = 6.25f;
     
     [SerializeField] private float _speed = 1.8f;
     
@@ -14,7 +14,7 @@ public class SpiderWebScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.Translate(Vector3.up);
     }
 
     // Update is called once per frame

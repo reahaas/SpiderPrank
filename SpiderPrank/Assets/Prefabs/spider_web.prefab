@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1889668405948215477}
   - component: {fileID: 9057102907756998969}
   - component: {fileID: 6457133123885958014}
+  - component: {fileID: 4342889814327519097}
   m_Layer: 0
   m_Name: spider_web
   m_TagString: Untagged
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -49946573
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b0226037afb94e4da42a62d2253231a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +98,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdebf47feeafb624f80ea140a1228646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalBorder: 6.2
-  _horizontalBorder: 4.5
+  _verticalBorder: 6.5
+  _horizontalBorder: 6.5
   _speed: 5
+--- !u!61 &4342889814327519097
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768601054632875465}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.6, y: 2.8}
+    newSize: {x: 2.6, y: 2.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6, y: 2.8}
+  m_EdgeRadius: 0
