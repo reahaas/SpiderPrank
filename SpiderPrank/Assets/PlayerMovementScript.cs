@@ -71,11 +71,6 @@ public class PlayerMovementScript : MonoBehaviour
 		    }
 
 		    
-		    Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
-		    if (dest.x < _horizontalBorder)
-			    transform.Translate(Vector3.up * Time.deltaTime * _speed );
-		    else
-			    transform.position = new Vector3(dest.x, -_verticalBorder, dest.z);
 	    }
     }
     
