@@ -34,44 +34,36 @@ public class PlayerMovementScript : MonoBehaviour
 
     void move()
     {
-	    if (!leftRight) // moving down up or up down so check horizontal borders 
-	    {
-		    Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
-		    if (transform.rotation.z == 0) // if going up
-		    {
-			    if (dest.y < _verticalBorder)
-				    transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			    else
-				    transform.position = new Vector3(dest.x, -_verticalBorder, dest.z);
-		    }
-		    else // if going down
-		    {
-			    if (dest.y > -_verticalBorder)
-				    transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			    else
-				    transform.position = new Vector3(dest.x, _verticalBorder, dest.z);
-		    }
+		Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
+		if (transform.eulerAngles.z == 0) // if going up
+		{
+			if (dest.y < _verticalBorder)
+				transform.Translate(Vector3.up * Time.deltaTime * _speed );
+			else
+				transform.position = new Vector3(dest.x, -_verticalBorder, dest.z);
 		}
-	    else // moving left right or right left so check vertical borders 
-	    {
-		    Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
-		    if (transform.rotation.z == 270) // if going right
-		    {
-			    if (dest.y < _verticalBorder)
-				    transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			    else
-				    transform.position = new Vector3(dest.x, -_verticalBorder, dest.z);
-		    }
-		    else // if going down
-		    {
-			    if (dest.y > -_verticalBorder)
-				    transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			    else
-				    transform.position = new Vector3(dest.x, _verticalBorder, dest.z);
-		    }
-
-		    
-	    }
+		else if (transform.eulerAngles.z == 180) // if going down
+        {
+			if (dest.y > -1 * _verticalBorder)
+				transform.Translate(Vector3.up * Time.deltaTime * _speed );
+			else
+				transform.position = new Vector3(dest.x, _verticalBorder, dest.z);
+		}
+	
+		else if (transform.eulerAngles.z == 270) // if going right
+		{
+            if (dest.x < _horizontalBorder)
+                transform.Translate(Vector3.up * Time.deltaTime * _speed);
+            else
+                transform.position = new Vector3(-1 * _horizontalBorder, dest.y, dest.z);  // dest.x, -_verticalBorder, dest.z);
+		}
+		else if(transform.eulerAngles.z == 90)// if going down
+        {
+			if (dest.x > -1 * _horizontalBorder)
+				transform.Translate(Vector3.up * Time.deltaTime * _speed );
+			else
+				transform.position = new Vector3(_horizontalBorder, dest.y, dest.z);
+		}
     }
     
     private void fire()
