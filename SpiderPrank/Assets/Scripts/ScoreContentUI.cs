@@ -29,7 +29,7 @@ public class ScoreContentUI : MonoBehaviour
     {
         foreach (Transform child in this.scoreContentUIGameObject.transform)
         {
-            Debug.Log("child name: " + child.name + ", value:" + this.scoreContentData.getData(child.name).ToString());
+            //Debug.Log("child name: " + child.name + ", value:" + this.scoreContentData.getData(child.name).ToString());
         }
     }
 

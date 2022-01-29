@@ -16,10 +16,17 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private BoxCollider2D boundingBox;
     
     [SerializeField] private GameObject spiderEggPrefab;
+
+	private UIManagerScript uiManager;
   
     // Start is called before the first frame update
     void Start()
     {
+		GameObject [] managers = GameObject.FindGameObjectsWithTag("UiManager");
+        if (managers.Length > 0)
+        {
+			uiManager = managers[0].GetComponent<UIManagerScript>();
+		}		
     }
 
     // Update is called once per frame
@@ -152,14 +159,17 @@ public class PlayerMovementScript : MonoBehaviour
     {
 		_protected = true;
         hp--;
-        //HealthBar bar = healthBar.GetComponent<HealthBar>();
-        //bar.gotHit();
         if (hp < 0)
         {
-            // explode
+			uiManager.gameOver();
             Destroy(this.gameObject);
         }
 		else{
+			GameObject [] healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
+     	 	if (healthBars.Length > 0)
+     	   {
+				healthBars[0].GetComponent<HealthBarScript>().updateLives(hp);
+			}		
 			float blinkingTotalDuration = 1f;
 			float endTime = Time.realtimeSinceStartup + blinkingTotalDuration; 
 			float timeLeft = blinkingTotalDuration;
