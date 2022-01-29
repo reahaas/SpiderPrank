@@ -603,15 +603,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1373374497
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6736d3523a29712448b7f5a43e7ce6d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 20, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -855,6 +855,7 @@ GameObject:
   - component: {fileID: 1836632034}
   - component: {fileID: 1836632037}
   - component: {fileID: 1836632038}
+  - component: {fileID: 1836632039}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -914,8 +915,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -49946573
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dcea51d6065d64246aeec467afeff684, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -935,7 +936,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836632033}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -981,9 +982,35 @@ MonoBehaviour:
   _horizontalBorder: 6.25
   hp: 3
   camera: {fileID: 519420028}
-  _defFireRate: 2
-  _fireRate: 0
-  regularWaterdropPrefab: {fileID: 1768601054632875465, guid: 1212bdd6afe23fc49ab6095f94541c9d, type: 3}
+  spiderWebPrefab: {fileID: 1768601054632875465, guid: 1212bdd6afe23fc49ab6095f94541c9d, type: 3}
+  boundingBox: {fileID: 158554114}
+  spiderEggPrefab: {fileID: 4237683868054900942, guid: 33ad2e730af48044bb27d626b32feae2, type: 3}
+--- !u!61 &1836632039
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836632033}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.48}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48, y: 0.48}
+  m_EdgeRadius: 0
 --- !u!1 &2128735155
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,6 +1023,7 @@ GameObject:
   - component: {fileID: 2128735158}
   - component: {fileID: 2128735156}
   - component: {fileID: 2128735157}
+  - component: {fileID: 2128735160}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1023,7 +1051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba8de9ab6e054cb4496d83becf2fd091, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b2eb7c201dc6ba44b1b9ed12c791956, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1077,13 +1105,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2128735160}
+        m_TargetAssemblyTypeName: ActionButton, Assembly-CSharp
+        m_MethodName: actionButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1118,3 +1146,17 @@ RectTransform:
   m_AnchoredPosition: {x: -60, y: 60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2128735160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128735155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d19cac5cad066499748b1ee71a1fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonSwitcher: {fileID: 358651232}
+  player: {fileID: 1836632038}
