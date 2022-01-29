@@ -22,12 +22,15 @@ public class CameraMovement : MonoBehaviour
             followupCamera = cameras[0];
             upfrontCamera = cameras[1];
         }
+
     }
 
     private void FixedUpdate()
     {
-        if (follower)
+        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length > 0)
         {
+            follower = players[0].transform;
             Vector3 pos = new Vector2(follower.transform.position.x, follower.transform.position.y) + followingOffset;
             mainCamera.transform.position = new Vector3(pos.x, pos.y, mainCamera.transform.position.z);
         }

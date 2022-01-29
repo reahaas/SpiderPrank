@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        Canvas canvas = this.gameObject.GetComponent<Canvas>();
+        canvas.enabled = true;
         this.scoreContentUI = new ScoreContentUI(scoreContentUIGameObject);
         this.scoreContentUI.debugLogScoreContent();
     }

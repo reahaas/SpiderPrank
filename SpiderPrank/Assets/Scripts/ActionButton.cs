@@ -13,6 +13,18 @@ public class ActionButton : MonoBehaviour
     {
         lastShot = Time.realtimeSinceStartup;
     }
+
+    void Update()
+    {
+        if (player == null)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length > 0)
+            {
+                player = players[0].GetComponent<PlayerMovementScript>();
+            }
+        }
+    }
     public void actionButtonClick()
     {
         if (Time.realtimeSinceStartup - lastShot > 0.5f)

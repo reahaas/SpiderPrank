@@ -28,7 +28,7 @@ public class ScoreContentData : MonoBehaviour
         else if (dataLable == "Enemies")
             return this.enemies;
         else
-            Debug.Log("Unsupported data requested: [" + dataLable + "]");
+            //Debug.Log("Unsupported data requested: [" + dataLable + "]");
             return -1;
     }
 }
