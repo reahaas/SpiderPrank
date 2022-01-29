@@ -38,40 +38,6 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         move();
-        Vector3 adjustedPosition = HandleOutOfBounds();
-        transform.position = adjustedPosition;
-    }
-
-    private Vector3 HandleOutOfBounds()
-    {
-	    Vector3 outOfBounds = Vector3.zero;
-
-	    if (transform.position.y > boundingBox.bounds.center.y + boundingBox.bounds.extents.y)
-	    {
-		    // Out of top
-		    outOfBounds.y = -1;
-	    }
-	    if (transform.position.y < boundingBox.bounds.center.y - boundingBox.bounds.extents.y)
-	    {
-		    // Out of bottom
-		    outOfBounds.y = 1;
-	    }
-	    if (transform.position.x > boundingBox.bounds.center.x + boundingBox.bounds.extents.x)
-	    {
-		    // Out of right
-		    outOfBounds.x = -1;
-	    }
-	    if (transform.position.x < boundingBox.bounds.center.x - boundingBox.bounds.extents.x)
-	    {
-		    // Out of left
-		    outOfBounds.x = 1;
-	    }
-
-
-	    return new Vector2(
-		    transform.position.x + (outOfBounds.x * boundingBox.bounds.size.x),
-		    transform.position.y + (outOfBounds.y * boundingBox.bounds.size.y)
-	    );
     }
 
     void move()
@@ -102,40 +68,6 @@ public class PlayerMovementScript : MonoBehaviour
 	    }
 	
 	    transform.Translate(Vector3.up * Time.deltaTime * _speed );
-
-	    /*
-	     * Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
-		if (transform.eulerAngles.z == 0) // if going up
-		{
-			if (dest.y < _verticalBorder)
-				transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			else
-				transform.position = new Vector3(dest.x, -_verticalBorder, dest.z);
-		}
-		else if (transform.eulerAngles.z == 180) // if going down
-        {
-			if (dest.y > -1 * _verticalBorder)
-				transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			else
-				transform.position = new Vector3(dest.x, _verticalBorder, dest.z);
-		}
-	
-		else if (transform.eulerAngles.z == 270) // if going right
-		{
-            if (dest.x < _horizontalBorder)
-                transform.Translate(Vector3.up * Time.deltaTime * _speed);
-            else
-                transform.position = new Vector3(-1 * _horizontalBorder, dest.y, dest.z);  // dest.x, -_verticalBorder, dest.z);
-		}
-		else if(transform.eulerAngles.z == 90)// if going down
-        {
-			if (dest.x > -1 * _horizontalBorder)
-				transform.Translate(Vector3.up * Time.deltaTime * _speed );
-			else
-				transform.position = new Vector3(_horizontalBorder, dest.y, dest.z);
-		}
-	     */
-		
     }
     
     public void fire()
@@ -150,7 +82,6 @@ public class PlayerMovementScript : MonoBehaviour
             if (_invincible) // if hit while shielded or w/e
             {
                 _invincible = false;
-              //  shieldGameObject.SetActive(false);
             }
             else
             {

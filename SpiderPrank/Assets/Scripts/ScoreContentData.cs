@@ -31,4 +31,12 @@ public class ScoreContentData : MonoBehaviour
             //Debug.Log("Unsupported data requested: [" + dataLable + "]");
             return -1;
     }
+
+    public void reset()
+    {
+        this.points = 0;
+        this.kills = 0;
+        this.eggs = 0;
+        this.enemies = 0;
+    }
 }

@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     private ScoreContentUI scoreContentUI;
 
     public static ScoreManager instance;
+    private bool isGameRunning = false;
 
     private void Awake()
     {
@@ -27,7 +28,8 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        this.updatePointsBySurvive();
+        if (isGameRunning == true)
+           this.updatePointsBySurvive();
         this.scoreContentUI.updatescoreContentUIGameObject();
         // this.debugLogScoreContent();
     }
@@ -63,5 +65,16 @@ public class ScoreManager : MonoBehaviour
     private void updateDecreaseEnemiesCount()
     {
         this.scoreContentUI.updateEnemies(-1);
+    }
+
+    public void resetScore()
+    {
+        this.scoreContentUI.scoreContentData.reset();
+        this.isGameRunning = true;
+    }
+
+    public void stopGame()
+    {
+        this.isGameRunning = false;
     }
 }
