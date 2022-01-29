@@ -7,7 +7,12 @@ public class SpiderEgg : MonoBehaviour
 {
     [SerializeField] float timeToSpawn;
     [SerializeField] private Sprite enemyImage;
-    //[SerializeField] private Image sourceObject;
+
+    // Sounds:
+    [SerializeField] private AudioSource layAnEggSound;
+    [SerializeField] private AudioSource enemyEvolvedSound;
+    [SerializeField] private AudioSource killEnemySound;
+
 
     private bool transformed = false;
 
@@ -17,6 +22,7 @@ public class SpiderEgg : MonoBehaviour
     {
         ScoreManager.instance.updateEggsOneEgg();
         startTime = Time.realtimeSinceStartup;
+        layAnEggSound.Play();
     }
 
     // Update is called once per frame
@@ -34,6 +40,7 @@ public class SpiderEgg : MonoBehaviour
         spriteR.sprite = enemyImage;
 
         ScoreManager.instance.updateIncreaseEnemiesCount();
+        enemyEvolvedSound.Play();
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -41,6 +48,7 @@ public class SpiderEgg : MonoBehaviour
         if (transformed && col.gameObject.tag == "Weapon")
         {
             ScoreManager.instance.updateKillsOneKill();
+            killEnemySound.Play();
             Destroy(this.gameObject);
         }
     }

@@ -12,6 +12,11 @@ public class PlayerMovementScript : MonoBehaviour
     private bool _invincible = false;
     private bool _protected = false;
 
+    // Sounds:
+    [SerializeField] private AudioSource playerTurnSound;
+    [SerializeField] private AudioSource playerTakeHitSound;
+    [SerializeField] private AudioSource gameOverSound;
+
     [SerializeField] private GameObject spiderWebPrefab;
     [SerializeField] private BoxCollider2D boundingBox;
     
@@ -157,6 +162,7 @@ public class PlayerMovementScript : MonoBehaviour
         if (hp < 0)
         {
             // explode
+            gameOverSound.Play();
             Destroy(this.gameObject);
         }
 		else{
@@ -164,7 +170,10 @@ public class PlayerMovementScript : MonoBehaviour
 			float endTime = Time.realtimeSinceStartup + blinkingTotalDuration; 
 			float timeLeft = blinkingTotalDuration;
 			float intervals = blinkingTotalDuration/4;
-			while (timeLeft > 0)
+
+            playerTakeHitSound.Play();
+
+            while (timeLeft > 0)
 			{
 				timeLeft = endTime - Time.realtimeSinceStartup;
 				if (this.gameObject.GetComponent<SpriteRenderer> ().enabled == true) {
@@ -185,17 +194,24 @@ public class PlayerMovementScript : MonoBehaviour
 
     public void turnRight()
     {
-	    float newAngle = (transform.eulerAngles.z - 5) % 360;
-	    transform.eulerAngles = new Vector3(0,0,newAngle);
-	    camera.transform.eulerAngles = new Vector3(0,0,newAngle);
+        int right_angle = -5;
+        this.turn(right_angle);
     }
  
     public void turnLeft()
     {
-	    float newAngle = (transform.eulerAngles.z + 5) % 360;
-	    transform.eulerAngles = new Vector3(0,0,newAngle);
-	    camera.transform.eulerAngles = new Vector3(0,0,newAngle);
+        int left_angle = 5;
+        this.turn(left_angle);
     }
+
+    private void turn(int direction)
+    {
+        float newAngle = (transform.eulerAngles.z + direction) % 360;
+        transform.eulerAngles = new Vector3(0, 0, newAngle);
+        camera.transform.eulerAngles = new Vector3(0, 0, newAngle);
+        this.playerTurnSound.Play();
+    }
+
     public void layAnEgg()
     {
 	    Instantiate(spiderEggPrefab, transform.position, transform.rotation);
