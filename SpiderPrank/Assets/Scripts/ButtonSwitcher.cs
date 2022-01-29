@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ButtonSwitcher : MonoBehaviour
 {
     [SerializeField] private Image _button;
-     private GameObject _player;
 
     /*
      * type 0 = attack
@@ -22,7 +21,6 @@ public class ButtonSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.Find("Player");
         lastImage = Random.Range(0, 4);
         _button.enabled = true;
     }
@@ -30,10 +28,18 @@ public class ButtonSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Time.realtimeSinceStartup - _lastSwitch > 1.5f) // every 1.5 seconds change the image and   
-                                                            // functionality of the button
+            // functionality of the button
         {
             _lastSwitch = Time.realtimeSinceStartup; // reset timer
+            changeButton();
+
+        }
+    }
+
+    public void changeButton()
+    {
             int nextImage = Random.Range(0, 4); // roll random number 0 - 3
             if (nextImage != lastImage) 
                 lastImage = nextImage;
@@ -51,23 +57,11 @@ public class ButtonSwitcher : MonoBehaviour
             lastImage = lastImage % 4;
             //lastImage ++;
             _button.sprite = _buttonTypes[lastImage];
-        }
     }
-
-    public void actionButtonClick()
+    public int getActionNumber()
     {
-        switch (lastImage)
-        {
-            case 0: // attack
-                break;
-            case 1: // lay egg
-                break;
-            case 2: // turn left
-                //_player;
-                break;
-            case 3: // turn right
-                break;
-
-        }
+        _lastSwitch = Time.realtimeSinceStartup; // reset timer
+        return lastImage;
     }
+
 }
