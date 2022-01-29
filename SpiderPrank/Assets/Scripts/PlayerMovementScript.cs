@@ -99,13 +99,13 @@ public class PlayerMovementScript : MonoBehaviour
         {
             // explode
             gameOverSound.Play();
-      			uiManager.gameOver();
+      		uiManager.gameOver();
             Destroy(this.gameObject);
         }
 		else{
 			GameObject [] healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
      	 	if (healthBars.Length > 0)
-     	   {
+     	    {
 				healthBars[0].GetComponent<HealthBarScript>().updateLives(hp);
 			}		
 			float blinkingTotalDuration = 1f;

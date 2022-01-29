@@ -35,6 +35,13 @@ public class UIManagerScript : MonoBehaviour
         actionButtonCanvas.GetComponent<Canvas>().enabled = true;
         Instantiate(player,new Vector3(0,0,0),Quaternion.identity);
         ScoreManager.instance.resetScore();
+
+        GameObject[] healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
+        if (healthBars.Length > 0)
+        {
+            int hp = 3;
+            healthBars[0].GetComponent<HealthBarScript>().updateLives(hp);
+        }
     }
     void pauseGame()
     {

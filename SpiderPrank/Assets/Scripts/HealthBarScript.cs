@@ -21,4 +21,9 @@ public class HealthBarScript : MonoBehaviour
     {
         livesDisplay.sprite = lives[health];
     }
+
+    public void resetHP()
+    {
+        updateLives(this.hp);
+    }
 }
