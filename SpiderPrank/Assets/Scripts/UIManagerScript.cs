@@ -34,6 +34,7 @@ public class UIManagerScript : MonoBehaviour
         scoringBoardCanvas.GetComponent<Canvas>().enabled = true;
         actionButtonCanvas.GetComponent<Canvas>().enabled = true;
         Instantiate(player,new Vector3(0,0,0),Quaternion.identity);
+        ScoreManager.instance.resetScore();
     }
     void pauseGame()
     {
@@ -44,11 +45,10 @@ public class UIManagerScript : MonoBehaviour
 
     public void gameOver()
     {
-        healthBarCanvas.GetComponent<Canvas>().enabled = false;
-        scoringBoardCanvas.GetComponent<Canvas>().enabled = false;
         actionButtonCanvas.GetComponent<Canvas>().enabled = false;
         deathScreen.enabled = true;
         deathScreenShowTime = Time.realtimeSinceStartup;
+        ScoreManager.instance.stopGame();
     }
 
     // Update is called once per frame
