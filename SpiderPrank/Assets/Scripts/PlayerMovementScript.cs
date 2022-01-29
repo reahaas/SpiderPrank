@@ -12,14 +12,11 @@ public class PlayerMovementScript : MonoBehaviour
     private bool _invincible = false;
     private bool _protected = false;
 
-    [SerializeField] private float _defFireRate = 2f;
-
-    [SerializeField] private float _fireRate;
-    private float _nextFire = 0.0f;
-
-    private bool leftRight = false;
-    [SerializeField] private GameObject regularWaterdropPrefab;
+    [SerializeField] private GameObject spiderWebPrefab;
+    [SerializeField] private BoxCollider2D boundingBox;
     
+    [SerializeField] private GameObject spiderEggPrefab;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +26,73 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         move();
-        if (Input.GetAxis("Fire1") > 0)
-            fire();
+        Vector3 adjustedPosition = HandleOutOfBounds();
+        transform.position = adjustedPosition;
+    }
+
+    private Vector3 HandleOutOfBounds()
+    {
+	    Vector3 outOfBounds = Vector3.zero;
+
+	    if (transform.position.y > boundingBox.bounds.center.y + boundingBox.bounds.extents.y)
+	    {
+		    // Out of top
+		    outOfBounds.y = -1;
+	    }
+	    if (transform.position.y < boundingBox.bounds.center.y - boundingBox.bounds.extents.y)
+	    {
+		    // Out of bottom
+		    outOfBounds.y = 1;
+	    }
+	    if (transform.position.x > boundingBox.bounds.center.x + boundingBox.bounds.extents.x)
+	    {
+		    // Out of right
+		    outOfBounds.x = -1;
+	    }
+	    if (transform.position.x < boundingBox.bounds.center.x - boundingBox.bounds.extents.x)
+	    {
+		    // Out of left
+		    outOfBounds.x = 1;
+	    }
+
+
+	    return new Vector2(
+		    transform.position.x + (outOfBounds.x * boundingBox.bounds.size.x),
+		    transform.position.y + (outOfBounds.y * boundingBox.bounds.size.y)
+	    );
     }
 
     void move()
     {
-		Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
+	    Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
+	    if (dest.y > _verticalBorder)
+	    {
+		    dest.y = -1 * _verticalBorder;
+		    transform.position = dest;
+	    }
+
+	    if (dest.y < -1 * _verticalBorder)
+	    {
+		    dest.y = _verticalBorder;
+		    transform.position = dest;
+	    }
+
+	    if (dest.x > _horizontalBorder)
+	    {
+		    dest.x = -1 * _horizontalBorder;
+		    transform.position = dest;
+	    }
+
+	    if (dest.x < -1 * _horizontalBorder)
+	    {
+		    dest.x = _horizontalBorder;
+		    transform.position = dest;
+	    }
+	
+	    transform.Translate(Vector3.up * Time.deltaTime * _speed );
+
+	    /*
+	     * Vector3 dest = transform.position + Vector3.up * Time.deltaTime * _speed;
 		if (transform.eulerAngles.z == 0) // if going up
 		{
 			if (dest.y < _verticalBorder)
@@ -65,11 +122,13 @@ public class PlayerMovementScript : MonoBehaviour
 			else
 				transform.position = new Vector3(_horizontalBorder, dest.y, dest.z);
 		}
+	     */
+		
     }
     
-    private void fire()
+    public void fire()
     {   
-	    Instantiate(regularWaterdropPrefab, transform.position, transform.rotation);
+	    Instantiate(spiderWebPrefab, transform.position, transform.rotation);
     }
     
     void OnTriggerEnter2D(Collider2D col)
@@ -126,12 +185,20 @@ public class PlayerMovementScript : MonoBehaviour
 
     public void turnRight()
     {
-	    transform.eulerAngles = new Vector3(0,0,transform.eulerAngles.z - 90);
+	    float newAngle = (transform.eulerAngles.z - 5) % 360;
+	    transform.eulerAngles = new Vector3(0,0,newAngle);
+	    camera.transform.eulerAngles = new Vector3(0,0,newAngle);
     }
  
     public void turnLeft()
     {
-	    transform.eulerAngles = new Vector3(0,0,transform.eulerAngles.z + 90);
-	    camera.transform.eulerAngles = new Vector3(0,0,transform.eulerAngles.z + 90);
+	    float newAngle = (transform.eulerAngles.z + 5) % 360;
+	    transform.eulerAngles = new Vector3(0,0,newAngle);
+	    camera.transform.eulerAngles = new Vector3(0,0,newAngle);
     }
+    public void layAnEgg()
+    {
+	    Instantiate(spiderEggPrefab, transform.position, transform.rotation);
+    }
+
 }

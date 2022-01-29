@@ -545,9 +545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   follower: {fileID: 1836632036}
   followingOffset: {x: 0, y: 0}
-  followupCamera: {fileID: 0}
-  upfrontCamera: {fileID: 0}
-  boundingBox: {fileID: 0}
+  followupCamera: {fileID: 1294685242}
+  upfrontCamera: {fileID: 408223925}
+  boundingBox: {fileID: 158554114}
 --- !u!1 &553991682
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,9 +977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _verticalBorder: 4.5
-  _horizontalBorder: 4.5
+  _verticalBorder: 4.65
+  _horizontalBorder: 6.25
   hp: 3
+  camera: {fileID: 519420028}
   _defFireRate: 2
   _fireRate: 0
   regularWaterdropPrefab: {fileID: 1768601054632875465, guid: 1212bdd6afe23fc49ab6095f94541c9d, type: 3}
@@ -1076,13 +1077,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: ecadae31efd780641989a74798ce0f16, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

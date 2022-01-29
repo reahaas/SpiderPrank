@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpiderWebScript : MonoBehaviour
 {
     
-    [SerializeField] private float _verticalBorder = 6.25f;
-    [SerializeField] private float _horizontalBorder = 6.25f;
+    [SerializeField] private float _verticalBorder = 8.25f;
+    [SerializeField] private float _horizontalBorder = 8.25f;
     
     [SerializeField] private float _speed = 1.8f;
     
