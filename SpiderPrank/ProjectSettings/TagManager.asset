@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - HealthBar
   - UiManager
+  - Undefined
+  - RemoveOnReset
   layers:
   - Default
   - TransparentFX

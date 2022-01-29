@@ -49,6 +49,20 @@ public class UIManagerScript : MonoBehaviour
         deathScreen.enabled = true;
         deathScreenShowTime = Time.realtimeSinceStartup;
         ScoreManager.instance.stopGame();
+        cleanScreen();
+    }
+
+    private void cleanScreen()
+    {
+        List<string> tagsToRemove = new List<string>() {"RemoveOnReset", "Enemy"};
+        foreach (string tag in tagsToRemove)
+        {
+            GameObject[] objectsToClean = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject obj in objectsToClean)
+            {
+                Destroy(obj.gameObject);
+            }
+        }
     }
 
     // Update is called once per frame
