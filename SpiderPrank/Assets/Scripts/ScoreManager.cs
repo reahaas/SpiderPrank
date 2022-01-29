@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private GameObject scoreContentUIGameObject;
+    [SerializeField] private GameObject scoreContentUIGameObject;    
+
+
     private ScoreContentUI scoreContentUI;
 
     public static ScoreManager instance;
@@ -35,7 +37,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void updateKillsOneKill()
-    {
+    {        
         this.scoreContentUI.updateKills(1);
 
         int earnedPointsByKill = 5000;

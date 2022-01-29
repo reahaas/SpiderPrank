@@ -9,12 +9,16 @@ public class SpiderWebScript : MonoBehaviour
     [SerializeField] private float _horizontalBorder = 8.25f;
     
     [SerializeField] private float _speed = 1.8f;
-    
-    
+
+    // Sounds:
+    [SerializeField] private AudioSource SpiderWebCreationSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
         transform.Translate(Vector3.up);
+        SpiderWebCreationSound.Play();
     }
 
     // Update is called once per frame
