@@ -7,7 +7,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private GameObject scoreContentUIGameObject;
     private ScoreContentUI scoreContentUI;
 
+    public static ScoreManager instance;
+
     private void Awake()
+    {
+        instance = this;
+    }
+
+    private void Start()
     {
         this.scoreContentUI = new ScoreContentUI(scoreContentUIGameObject);
         this.scoreContentUI.debugLogScoreContent();
@@ -27,27 +34,28 @@ public class ScoreManager : MonoBehaviour
         this.scoreContentUI.updatePoints(earnedPoints);
     }
 
-    void updateKillsOneKill()
+    public void updateKillsOneKill()
     {
         this.scoreContentUI.updateKills(1);
 
         int earnedPointsByKill = 5000;
         this.scoreContentUI.updatePoints(earnedPointsByKill);
+        updateDecreaseEnemiesCount();
     }
 
-    void updateEggsOneEgg()
+    public void updateEggsOneEgg()
     {
         this.scoreContentUI.updateEggs(1);
         int earnedPointsByNewEgg = 2000;
         this.scoreContentUI.updatePoints(earnedPointsByNewEgg);
     }
 
-    void updateIncreaseEnemiesCount()
+    public void updateIncreaseEnemiesCount()
     {
         this.scoreContentUI.updateEnemies(1);
     }
 
-    void updateDecreaseEnemiesCount()
+    private void updateDecreaseEnemiesCount()
     {
         this.scoreContentUI.updateEnemies(-1);
     }
